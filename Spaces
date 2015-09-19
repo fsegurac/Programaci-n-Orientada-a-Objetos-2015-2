@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class Spaces {
+
+
+private static int MaxPot(int k, int p){ //Funcion recursiva para hallar la màxima potencia de  10 menor a un numero dado, p inicia en cero
+ int a = (int)(k/(Math.pow(10, p))); //Entero a, igual a entero k dividido entre, 10 elevado el exponente dado en p
+ if(a==0){ 
+    return p-1; //Si el entero dado, k, es menor a la potencia de 10 actual, osea, su division entera da cero, retornar el ultimo valor de p que hace que la division no sea cero.
+ }else{
+    return MaxPot(k,p+1); //Si el entero dado, k, todavia se puede dividir entre la potencia de 10 actual sin dar cero, retornar la misma funcion probada con p+1: si la potencia de 10 fuera 100, la proxima vez se probaria la funcion con 1000 
+ }
+}
+
+private static int Digitos(int k, int p){ //Funcion para retornar un digito especifico de un numero dado: Si el numero dado es 45335 y p es 3, se retorna el tercer digito de derecha a izquierda del numero, que es 3
+ int q = (int)Math.pow(10,p); //Entero q, 10 elevado al exponente p: si p es 3, q es 1000
+ int a = k/q; 
+ return (k%(a*q))/(q/10); //retornar la division de dos numeros: el primero es (k%(a*q)), osea, los p ultimos numeros del entero dado: si el entero k es 45335, y p es 3, el resultado sera, 335. El segundo es (q/10), osea, una potencia de 10 tal que al dividir el primer termino, extraiga su cifra mas significativa: Si el primer termino es 335, el segundo termino sera 100, para que el ser divididos, el resultado final corresponda al digito p de derecha a izquierda del entero dado, que es 3. 
+};
+	
+
+     public static void main(String[] args) {
+    	Scanner leer = new Scanner(System.in);
+		int k; //Entero a imprimir con espacios entre sus digitos
+		System.out.println("Introduzca numero entero: ");
+		   
+		   k = leer.nextInt();
+		   int a = MaxPot(k,0); //Maxima potencia de 10 menor al entero dado
+		   int b = (int)Math.pow(10,a); //10 elevado a la potencia a
+		   System.out.print(k/b); //Imprimir el primer digito del numero dado, osea, k dividido entre b
+		   System.out.print("   ");
+		   for( int i=a; i>0; i-- ){
+			   System.out.print(Digitos(k,i)); //los siguientes digitos se imprimen usando la funcion Digitos() en reversa, para que sean imprimidos en orden  
+			   System.out.print("   "); //Espacio entre cada digito
+		   };
+	}
+
+}
