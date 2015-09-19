@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class Average {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner leer = new Scanner(System.in);
+	    int n = 0; // Suma de enteros inicializada en cero
+	    int v = 0; // Numero de enteros sumados inicializado en cero
+	    int k; // Entero para las lecturas
+	    boolean exit = false; // indicador de salida del ciclo
+	   while(!exit){ 
+	    k = leer.nextInt();
+	     if( k==9999 ){
+	       exit = true; //Salida del ciclo si el entero leido es 9999
+	     }else{
+	       n += k; //Sumar entero leido con el acumulado actual
+	       v++; //Sumar uno al numero de enteros leidos
+	     };
+	   };
+	    System.out.print("The average is: ");
+	    System.out.print(n/v); //Imrimir Average
+	}
+
+}
