@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+
+public class PrimeNumbers {
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner leer = new Scanner (System.in);
+		int n; //Entero n para la lectura
+		n = leer.nextInt(); 
+		int q = (int)Math.sqrt(n); //Entero q, raiz cuadrada de n
+		  if(n<=3){
+		    for(int i=1;i<=n;i++ ){ 
+		    System.out.print(+i); //Si el numero es menor o igual a 3, imprimir todos los numeros de 1 a n, pues todos son primos
+		    System.out.print(" ");  
+		    };
+		  }else{
+		   for( int i=1;i<=n;i++ ){ //Probar para la serie de 1 a n
+		    for( int j=2;j<=q;j++ ){ //Numeros de 2 a raiz cuadrada de n
+		    	if(i%j==0){ //Si un numero de 1 a n es divisible entre otro numero de 2 a raiz cuadrada de n
+		    	if(i!=j){ //Si el numero de 1 a n no es 1 o si mismo y cumple la condicion anterior, no es primo y el ciclo debe cerrarse 		
+		    		break; //cerrar el ciclo y probar con el siguiente numero de la serie de 1 a n, pues ya se sabe que el actual numero no es primo
+		        };
+		       };
+		       if(j==q){
+		    	   System.out.print(+i); //Si se ha probado que el numero de 1 a n no es divisible por ningun numero diferente a 1 y el mismo, imprimir
+				   System.out.print(" ");  
+		        };
+		    };
+		   };
+		  };
+	};
+
+};
