@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class Integers {
+
+	public static void main(String[] args) {
+		selectOddOrPair(n, m);
+		selectHigherNumber(n, m);
+		multiple(n, m);
+	}
+
+	// Esta funciÛn toma dos enteros, n y m, y nos devuelve una impresion en
+	// consola que nos indica cual de ellos es par y cual es impar
+	public static void selectOddOrPair(int n, int m) {
+		// la condicion dentro del if nos dice que si el numero n al dividirse
+		// entre dos, su modulo es cero, es porque n es par , si no lo es
+		// entonces es impar
+		if (n % 2 == 0) {
+			System.out.println("El numero " + n + " es par");
+		} else {
+			System.out.println("El numero " + n + " es impar");
+		}
+		// la condicion es la misma que la anteriormente descrita
+		if (m % 2 == 0) {
+			System.out.println("El numero " + m + " es par");
+		} else {
+			System.out.println("El numero " + m + " es impar");
+		}
+
+	}
+
+	// esta funcion recibe dos enteros, n y m, y nos devuelve en impresion de
+	// consola cual es numero mayor y cual el menor
+	public static void selectHigherNumber(int n, int m) {
+		// dentro de la condicion se comparan los enteros n y m y pregunta,
+		// explicitamente si n es mayor que m, si es asi es porque efectivamente
+		// n es mayor que m, si no, entonces es porque m es mayor que n
+		if (n > m) {
+			System.out.println(n + " > " + m);
+		} else {
+			System.out.println(m + " > " + n);
+		}
+	}
+
+	// esta funcion recibe dos numeros enteros, n y m, y nos devuelve en formato
+	// de impresion por consola si alguno de los enteros es multiplo del otro
+	public static void multiple(int n, int m) {
+		// primero se pone la condicion de quÈ entero es mayor, ya que el numero
+		// menor no puede ser multiplo del numero menor, luego se pone la
+		// condicion de, si al dividir un entero mayor entre otro menor su
+		// modulo es cero, es porque el entero menor es multiplo del numero
+		// mayor
+		if (n > m) {
+			if (n % m == 0) {
+				System.out.println(n + " es multiplo de " + m);
+			} else {
+				System.out.println(n + " no es multiplo de " + m);
+			}
+		} else {
+			if (m % n == 0) {
+				System.out.println(m + " es multiplo de " + n);
+			} else {
+				System.out.println(m + " no es multiplo de " + n);
+			}
+
+		}
+	}
+
+	static Scanner sc = new Scanner(System.in);
+	static int n = sc.nextInt();
+	static int m = sc.nextInt();
+}
