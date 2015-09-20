@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class ATM {
+	public static void main(String[] args) {
+		bank(n);
+	}
+
+	// esta funcion recibe un numero entero n, que hace de valor monetario para
+	// ser retirado de un banco y nos devuelve, por formato de impresion de
+	// consola, la menor cantidad de billetes y monedas que cumplan con el
+	// requisito o si es un valor invalido nos avisa de un fallo
+	public static void bank(int n) {
+		// la condicion nos garantiza que el valor de la transaccion debe ser un
+		// numero positivo y de que debe ser multiplo de 50, si no, nos genera
+		// un mensaje de error en la transaccion
+		if (n > 0 && n % 50 == 0) {
+			// para determinar la cantidad de billetes que se requieren de un
+			// determinado valor se divide el valor de la transaccion por el
+			// correspondiente valor del billete
+			int bill50000 = n / 50000;
+			// change es una variable a la que se le asigna el modulo de la
+			// operacion anterior para poder determinar el valor de la cantidad
+			// de billetes de la siguiente denominacion en el orden de jerarquia
+			// hasta llegar a lo que se ha denominado como monedas de 50
+			change = n % 50000;
+			System.out.println(bill50000 + " billetes de 50000");
+			int bill20000 = change / 20000;
+			change = change % 20000;
+			System.out.println(bill20000 + " billetes de 20000");
+			int bill10000 = change / 10000;
+			change = change % 10000;
+			System.out.println(bill10000 + " billetes de 10000");
+			int bill5000 = change / 5000;
+			change = change % 5000;
+			System.out.println(bill5000 + " billetes de 5000");
+			int bill2000 = change / 2000;
+			change = change % 2000;
+			System.out.println(bill2000 + " billetes de 2000");
+			int bill1000 = change / 1000;
+			change = change % 1000;
+			System.out.println(bill1000 + " billetes de 1000");
+			int coin500 = change / 500;
+			change = change % 500;
+			System.out.println(coin500 + " monedas de 500");
+			int coin200 = change / 200;
+			change = change % 200;
+			System.out.println(coin200 + " monedas de 200");
+			int coin100 = change / 100;
+			change = change % 100;
+			System.out.println(coin100 + " monedas de 100");
+			int coin50 = change / 50;
+			change = change % 50;
+			System.out.println(coin50 + " monedas de 50");
+		} else {
+			System.err.println("Error de transaccion");
+		}
+	}
+
+	static int change;
+	static Scanner sc = new Scanner(System.in);
+	static int n = sc.nextInt();
+}
