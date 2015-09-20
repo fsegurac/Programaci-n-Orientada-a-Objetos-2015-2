@@ -1,0 +1,152 @@
+package tictactoe;
+import java.util.Scanner;
+
+//TicTacToe:
+
+public class Tictactoe {
+   
+// se nombran constantes oara representar el contenido de los cuadros del tablero de juego
+    
+   public static final int VACIO = 0;
+   public static final int CRUZADOS = 1;
+   public static final int NADA = 2;
+ 
+   // se nombran constantes para representar diferentes estados del juego
+   public static final int jugando = 0;
+   public static final int empate = 1;
+   public static final int gana = 2;
+   public static final int gana_o = 3;
+ 
+   //estado del juego y tablero de juego
+   public static final int filas = 3, colum = 3; // numero de filas y columnas en el tablero (se puede hacer más grade)
+   public static int[][] tab = new int[filas][colum]; // tablero de juego dos dimensiones-- aqui contenemos el contenido de los cuadros
+
+   public static int estado_de_juego;  // estado actual del juego -- aqui contenemos los estados de juego
+ 
+   public static int jugador_actual; // jugador actual
+   public static int fila_act, colum_act; // contenido de las filas y columnas
+ 
+   public static Scanner in = new Scanner(System.in); // utiliza este input scanner
+ 
+   
+   public static void main(String[] args) {
+      
+      inicJuego();
+      // se juega una sola vez
+      do {
+         movimiento(jugador_actual); // se actualiza el fila/columna
+         actJuego(jugador_actual, fila_act, colum_act); // actualiza estado de juego 
+         tablero();
+         // se imprime un aviso en caso de final de juego
+         if (estado_de_juego == gana) {
+            System.out.println("Jugador 'X' gana!!");
+         } else if (estado_de_juego == gana_o) {
+            System.out.println("Jugador 'O' gana!!");
+         } else if (estado_de_juego == empate) {
+            System.out.println("Es un empate! -.-");
+         }
+         //cambio de juego
+         jugador_actual = (jugador_actual == CRUZADOS) ? NADA : CRUZADOS;
+      } while (estado_de_juego == jugando); // se repite si no se acab el juego
+   }
+ 
+   // inicializa el contenido del tablero
+   public static void inicJuego() {
+      for (int row = 0; row < filas; ++row) {
+         for (int col = 0; col < colum; ++col) {
+            tab[row][col] = VACIO;  // todos los cuadro estan vacios
+         }
+      }
+      estado_de_juego = jugando; 
+      jugador_actual = CRUZADOS; 
+   }
+ 
+   
+   public static void movimiento(int theSeed) {
+      boolean validacion = false;  // validacion scnner input
+      do {
+         if (theSeed == CRUZADOS) {
+            System.out.print("Turno Jugador 'X', ingrese proximo movimiento ( fila [1-3] columna [1-3]): ");
+         } else {
+            System.out.print("Turno Jugador 'O', ingrese proximo movimiento  ( fila [1-3]  columna [1-3]): ");
+         }
+         int row = in.nextInt() - 1;  // array inicializa en 0
+         int col = in.nextInt() - 1;
+         if (row >= 0 && row < filas && col >= 0 && col < colum && tab[row][col] == VACIO) {
+            fila_act = row;
+            colum_act = col;
+            tab[fila_act][colum_act] = theSeed;  // actualiza contenidos del tablero
+            validacion = true;  
+         } else {
+            System.out.println("El movimiento (" + (row + 1) + "," + (col + 1)
+                  + ") no es valido.      Intente de nuevo...");
+         }
+      } while (!validacion);  // se repite hasta que validacion = true
+   }
+ 
+   //actualiza estado actual del juego despues de movimiento del jugador
+    public static void actJuego(int mov, int fila, int columna) {
+      if (gano(mov, fila, columna)) {  // revisa si el movimiento es ganador
+         estado_de_juego = (mov == CRUZADOS) ? gana : gana_o;
+      } else if (isDraw()) {  // check for draw
+         estado_de_juego = empate;
+      }
+      // de no ser el movimiento ganador continua.
+   }
+ 
+   
+   // TO DO: se declara empate si ningun jugador puede ganar/ no posible movimiento 
+   public static boolean isDraw() {
+      for (int row = 0; row < filas; ++row) {
+         for (int col = 0; col < colum; ++col) {
+            if (tab[row][col] == VACIO) {
+               return false;  // se encuentra un cuadro vacio, no se declara empate
+            }
+         }
+      }
+      return true;  // no hay cuadro vacio = EMPATE
+   }
+ 
+   public static boolean gano(int cuadro, int fila, int column) {
+      return (tab[fila][0] == cuadro         
+                   && tab[fila][1] == cuadro
+                   && tab[fila][2] == cuadro
+              || tab[0][column] == cuadro      
+                   && tab[1][column] == cuadro
+                   && tab[2][column] == cuadro
+              || fila == column            
+                   && tab[0][0] == cuadro
+                   && tab[1][1] == cuadro
+                   && tab[2][2] == cuadro
+              || fila + column == 2  
+                   && tab[0][2] == cuadro
+                   && tab[1][1] == cuadro
+                   && tab[2][0] == cuadro);
+   }
+ 
+   //   IMPRIME EL TABLERO  
+   public static void tablero() {
+      for (int row = 0; row < filas; ++row) {
+         for (int col = 0; col < colum; ++col) {
+            printCell(tab[row][col]); // IMPRIME CADA CUADRO
+            if (col != colum - 1) {
+               System.out.print("|");   // division vertical
+            }
+         }
+         System.out.println();
+         if (row != filas - 1) {
+            System.out.println("- - - - - -"); // division horizontal
+         }
+      }
+      System.out.println();
+   }
+ 
+   // imprime el contenido del cuadro
+   public static void printCell(int content) {
+      switch (content) {
+         case VACIO:  System.out.print("   "); break;
+         case NADA: System.out.print(" O "); break;
+         case CRUZADOS:  System.out.print(" X "); break;
+      }
+   }
+}
