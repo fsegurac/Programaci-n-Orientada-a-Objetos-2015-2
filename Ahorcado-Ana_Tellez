@@ -1,0 +1,115 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class Ahorcado {
+
+	public static void Game(char[]a, String x){
+        boolean juego=true;
+        int errores=0;  
+        char []b= new char [a.length];
+        for(int i=0; i<a.length; i++){
+            b[i]='_';
+            System.out.print(b[i]+ " ");
+        }
+        while(juego==true){
+            boolean cambiar=false;
+            Scanner Letter= new Scanner(System.in);
+            char AssignLetter =Letter.next().charAt(0);
+            for(int m=0; m<a.length; m++){
+                if(AssignLetter==(a[m])){
+                    cambiar=true;
+                    b[m]=a[m];
+                    for(int j=0; j<a.length; j++){
+                        System.out.print(b[j]+" ");
+                    }
+                }
+            }
+            if(cambiar==false){
+                if(errores<x.length()){
+                    for(int j=0; j<a.length; j++){
+                        System.out.print(b[j]+" ");
+                    }
+                    System.out.print("\t");
+                    if(errores==0){
+                    System.out.printf("%.1s",x);
+                                        }
+                    if(errores==1){
+                        System.out.printf("%.2s",x);
+                        }
+                    if(errores==2){
+                        System.out.printf("%.3s",x);
+                        }
+                    if(errores==3){
+                        System.out.printf("%.4s",x);
+                    }
+                    if(errores==4){
+                        System.out.printf("%.5s",x);
+                    }
+                    if(errores==5){
+                        System.out.printf("%.6s",x);
+                    }
+                    if(errores==6){
+                        System.out.printf("%.7s \n",x);
+                         
+                    }
+                }
+                    errores++;
+                if(errores>=x.length()){
+                    System.out.println(" LOSER, r:");
+                    for(int k=0; k<a.length; k++){
+                    System.out.print(a[k]);
+                    }
+                    
+                }
+            }
+            int ganar=0;
+            for(int n=0; n<a.length; n++){
+                if(b[n]==a[n]){
+                    ganar++;
+                }
+                if(ganar==a.length){
+                    System.out.println();
+                    System.out.println("GANASTE !!");
+                    
+                    }
+                }
+            }
+         
+        }
+ 
+ 
+     
+    public static void main(String[] args) {
+        String[] nombres={"oboe","flautin","flauta","corno","clarinete","fagot",
+				"trompeta","trombom","tuba","armonica","armonica","gaita","melodica","ocarina",
+				"organo","saxofon","arpa","banjo","charango","citara","clavesin","clavicordio",
+				"contrabajo","cuatro","espineta","guitarra","laud","lira","piano","viola",
+				"violin","violonchelo","rabel","castaÒuelas","platillos","campana","xilofono",
+				"triangulo","gong","cascabeles","sonajas","maracas","caja","celesta","bateria",
+				"clave","vibrafono","siringa","zambomba","pandereta","acordeon","agogo",
+				"tambor","timbal","pandero","clavicordio","mandolina","tambora","llamador","theremin",
+				"cimbalom"};    
+ 
+        Random GenerarPalabra=new Random();
+        int x = GenerarPalabra.nextInt(101);
+        String a= nombres[x];
+        char []name= a.toCharArray();
+        String hangman="q(X_X)p";
+                 
+        System.out.print("         A H O R C A D O     q(X_X)P \n\n\n");
+        System.out.println("se toma una palabra (de 64) para que la adivine");
+        System.out.print("Ingrese un numero");
+        Scanner jugar= new Scanner(System.in);
+        int num;
+        num=jugar.nextInt();
+         
+        if(num==1){
+            System.out.print("\n\n");
+            Game(name,hangman);
+        }else{
+            System.out.print("\n\n");
+            Game(name,hangman);
+            }
+            }
+
+}
