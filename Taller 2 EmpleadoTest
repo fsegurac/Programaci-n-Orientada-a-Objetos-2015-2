@@ -1,0 +1,42 @@
+
+public class EmpleadoTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	  
+      Empleado Empleado1 = new Empleado("Carlo", "Magno", 10.0);
+      Empleado Empleado2 = new Empleado("Dorotasio", "Pulcravista", 12.0);
+      Empleado Empleado3 = new Empleado("Eustrebundio", "Corredera", 8907.0);
+      Empleado Empleado4 = new Empleado("Amparo", "Castelcuarto", -355.0);
+      Empleado Empleado5 = new Empleado("Laura", "Pausini", 12000.0);
+      
+      Empleado1.getSalarioAnual();
+      Empleado2.getSalarioAnual();
+      Empleado3.getSalarioAnual();
+      Empleado4.getSalarioAnual();
+      Empleado5.getSalarioAnual();
+      System.out.println();
+     
+       for( int i=0; i<5; i++ ){
+     
+         System.out.println("Incremento del 10%: Año " +(i+1));
+         System.out.println();
+       
+         Empleado1.setSalario((Empleado1.getSalario()*11)/10); 
+         Empleado2.setSalario((Empleado2.getSalario()*11)/10); 
+         Empleado3.setSalario((Empleado3.getSalario()*11)/10); 
+         Empleado4.setSalario((Empleado4.getSalario()*11)/10); 
+         Empleado5.setSalario((Empleado5.getSalario()*11)/10); 
+     
+         Empleado1.getSalarioAnual();
+         Empleado2.getSalarioAnual();
+         Empleado3.getSalarioAnual();
+         Empleado4.getSalarioAnual();
+         Empleado5.getSalarioAnual();
+       
+         System.out.println();
+     
+       }
+	  
+	} 	
+}
