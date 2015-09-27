@@ -1,0 +1,47 @@
+public class Empleado {
+  private String nombre;
+  private String apellido;
+  private double salarioMensual;
+  
+  public Empleado(String Nombre, String Apellido, double Salario) {
+      this.setNombre(Nombre);
+      this.setApellido(Apellido);
+      this.setSalario(Salario);
+  } 
+  
+  public void setNombre( String Nombre ){
+	 this.nombre = Nombre; 
+  }
+  
+  public void setApellido( String Apellido ){
+		 this.apellido = Apellido; 
+  }
+  
+  public void setSalario( double Salario ){
+	  if(Salario<0.0){
+		 this.salarioMensual = 0.0;
+	  }else{
+		 this.salarioMensual = Salario;  
+	  }
+  }
+  
+  public String getNombre() {
+      return nombre;
+  }
+  
+  public String getApellido() {
+      return apellido;
+  }
+  
+  public double getSalario() {
+      return salarioMensual;
+  }
+  
+  public void getSalarioAnual(){
+	  System.out.print(getNombre()+" ");
+      System.out.print(getApellido()+", ");
+      System.out.print("Salario Anual: ");
+      System.out.println(getSalario()*12);
+  }
+  
+}
